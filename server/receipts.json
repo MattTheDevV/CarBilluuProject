@@ -1,0 +1,58 @@
+[
+  {
+    "date": "04-01-2024",
+    "fuelAmount": 30,
+    "price": 1100.9,
+    "currentMileage": 14100,
+    "id": "d9b8447437ed57cba334452c79eeb8b6"
+  },
+  {
+    "date": "04-10-2024",
+    "fuelAmount": 30,
+    "price": 1100.9,
+    "currentMileage": 14700,
+    "id": "565bb5dc373bdbe9956bdb9da174461f"
+  },
+  {
+    "date": "04-20-2024",
+    "fuelAmount": 25,
+    "price": 900.9,
+    "currentMileage": 15300,
+    "id": "1613089c0c3e32a09f5c2504422f49d2"
+  },
+  {
+    "date": "05-20-2024",
+    "fuelAmount": 25,
+    "price": 900.9,
+    "currentMileage": 15300,
+    "id": "42eeeae5289d8d13eac549c29d4eefdd"
+  },
+  {
+    "date": "06-20-2024",
+    "fuelAmount": 25,
+    "price": 900.9,
+    "currentMileage": 15300,
+    "id": "3f50ba06a60b4cc279e38da9411e5680"
+  },
+  {
+    "date": "06-20-2024",
+    "fuelAmount": 25,
+    "price": 900.9,
+    "currentMileage": 15300,
+    "id": "fb990923b33116fe5aa65ac80b9d6912"
+  },
+  {
+    "date": "06-20-2024",
+    "fuelAmount": 25,
+    "price": 900.9,
+    "currentMileage": 15300,
+    "id": "444e08c5fc54f867aaa12c070dc7fe96"
+  },
+  {
+    "date": "06-20-2024",
+    "fuelAmount": 25,
+    "price": 900.9,
+    "currentMileage": 15300,
+    "id": "8e2747e892ad301bfc5b27f4f5a0a12c"
+  }
+]
