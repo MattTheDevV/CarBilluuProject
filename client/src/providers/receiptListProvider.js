@@ -12,7 +12,7 @@ export const ReceiptListProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8000/receipts/list', {
+                const response = await fetch('http://10.0.0.114:8000/receipts/list', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

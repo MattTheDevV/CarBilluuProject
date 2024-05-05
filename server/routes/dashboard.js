@@ -7,40 +7,46 @@ const {readReceiptsData, writeReceiptsData, sortReceiptsByDate } = require(path.
 
 
 // get statistics for current map logic
-async function getSummaryForMonth(monthNumber,Year){
-    return readReceiptsData()
-    .then(receipts => {
-      currentMonthReceipts = receipts.filter(receipt => new Date(receipt.date).getMonth() == monthNumber && new Date(receipt.date).getFullYear() == Year)
-  
+async function getSummaryForMonth(monthNumber, year) {
+  return readReceiptsData()
+  .then(receipts => {
+      const currentMonthReceipts = receipts.filter(receipt => {
+          const [yearPart,month, day] = receipt.date.split('-');
+          const date = new Date(`${yearPart}-${month}-${day}`); // Convert to a proper format
+          return date.getMonth() === monthNumber && date.getFullYear() === year; // Adjust monthNumber since getMonth() returns 0-11
+      });
+
       if (currentMonthReceipts.length > 0) {
-  
-        sortReceiptsByDate(currentMonthReceipts)
-  
-        mileage = 0
-        if (currentMonthReceipts.length > 1) {
-          mileage = (currentMonthReceipts[0].currentMileage - currentMonthReceipts[currentMonthReceipts.length-1].currentMileage)
-        }else{
-          mileage = currentMonthReceipts[0].currentMileage
-        }
-  
-        currency = 0
-        gallons = 0
-        currentMonthReceipts.forEach(receipt => {
-          currency += receipt.price,
-          gallons += receipt.fuelAmount
-        });
-  
-        consumption = (gallons/mileage)*100
-        return ([
-          currency.toFixed(2),
-          consumption.toFixed(1),
-          mileage.toFixed()
-        ])
-      }else{
-        return ([0,0,0])
+          sortReceiptsByDate(currentMonthReceipts); // Ensure this function modifies the array directly or returns a sorted array
+
+          let mileage = 0;
+          if (currentMonthReceipts.length > 1) {
+              // Sort might be ascending or descending; ensure 0 is the latest after sort
+              mileage = Math.abs(currentMonthReceipts[0].currentMileage - currentMonthReceipts[currentMonthReceipts.length - 1].currentMileage);
+          } else {
+              mileage = currentMonthReceipts[0].currentMileage;
+          }
+
+          let currency = 0;
+          let gallons = 0;
+          currentMonthReceipts.forEach(receipt => {
+              currency += receipt.price;
+              gallons += receipt.fuelAmount;
+          });
+
+          const consumption = gallons > 0 ? (gallons / mileage) * 100 : 0; // Prevent division by zero
+
+          return [
+              currency.toFixed(2),
+              consumption.toFixed(1),
+              mileage.toFixed()
+          ];
+      } else {
+          return [0, 0, 0];
       }
-    })
+  });
 }
+
   
 const getDashboardSchema = Joi.object({
   currencyMax: Joi.number().required().positive(),

@@ -13,7 +13,7 @@ export const DashboardProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 console.log("fetching");
-                const response = await fetch('http://localhost:8000/dashboard/get', {
+                const response = await fetch('http://10.0.0.114:8000/dashboard/get', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
