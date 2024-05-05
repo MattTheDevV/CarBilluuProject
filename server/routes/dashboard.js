@@ -49,7 +49,7 @@ const getDashboardSchema = Joi.object({
 });
 
 
-router.get('/get', (req, res) => {
+router.post('/get', (req, res) => {
      // validace dtoIn
      const { error } = getDashboardSchema.validate(req.body);
      if (error) {
