@@ -23,8 +23,9 @@ const TextDivider = ({ text }) => {
   return (
     <div style={dividerStyle}>
       <div style={lineStyle}></div>
-      <span style={textStyle}>{text}</span>
-      <div style={lineStyle}></div>
+      {text && <span style={textStyle}>{text}</span>}
+      {text && <div style={lineStyle}></div>}
+      {!text && <div style={{ flex: 0 }}></div>} 
     </div>
   );
 };

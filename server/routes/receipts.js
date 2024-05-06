@@ -118,7 +118,7 @@ const infoFuelSchema = Joi.object({
     id: Joi.string().required()
 });
 
-router.get("/info", (req, res) => {
+router.post("/info", (req, res) => {
     const { error } = infoFuelSchema.validate(req.body);
     if (error) {
       return res.status(400).json(error.details[0].message);
@@ -128,9 +128,17 @@ router.get("/info", (req, res) => {
       readReceiptsData()
       .then(data => {
         let found = data.find(element => element.id === req.body.id)
-  
-        if (!!found) {
-          res.send(found)
+        let foundIndex = data.findIndex(element => element.id === req.body.id);
+        let returnData = {
+          date: found.date,
+	        fuelAmount: found.fuelAmount,
+          price: found.price,
+          currentMileage: found.currentMileage,
+          drivenSinceLastRefuel: foundIndex >0 ? (found.currentMileage - (data[foundIndex-1].currentMileage)) : "--",
+          id: "8075f4ada0b98b04fccdb63738b0bfd4"
+        }
+        if (!!returnData) {
+          res.send(returnData)
         }else{
           res.send({
             "success":false,

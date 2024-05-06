@@ -19,8 +19,8 @@ export const DashboardProvider = ({ children }) => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        "currencyMax": 5000, // target money spent for given month
-                        "consumptionMax": 10, // target average consumption for given month
+                        "currencyMax": 10000, // target money spent for given month
+                        "consumptionMax": 8, // target average consumption for given month
                         "mileageMax": 5000 // max target mileage for given month
                     })
                 });
